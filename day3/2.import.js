@@ -7,3 +7,5 @@ printHello();
 
 lib2Obj.foo1();
 lib2Obj.foo2();
+
+console.log(lib2Obj)

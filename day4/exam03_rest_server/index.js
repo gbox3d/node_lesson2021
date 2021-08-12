@@ -1,10 +1,10 @@
 import http from 'http'
 import { url } from 'inspector';
-import {URL} from 'url'
+import { URL } from 'url'
 
 const port = 8090
 
-http.createServer((req,res)=> {
+http.createServer((req, res) => {
 
     const urlObj = new URL(
         req.url,
@@ -25,13 +25,17 @@ http.createServer((req,res)=> {
         'Access-Control-Max-Age': '1000',
         "Access-Control-Allow-Headers": "*" //CORS 정책 허용  * 는 모두 허용 
     }
-    res.writeHead(200,header);
+    res.writeHead(200, header);
 
-    let _title = urlObj.searchParams.get('title');
-    let _msg = urlObj.searchParams.get('msg');
+    if (urlObj.pathname == '/echo') {
+        let _title = urlObj.searchParams.get('title');
+        let _msg = urlObj.searchParams.get('msg');
 
-    result.title = _title
-    result.msg = _msg
+        result.title = _title
+        result.msg = _msg
+    }
+    //swich case , api가 많을 경우 
+
 
     res.end(JSON.stringify(result));
 

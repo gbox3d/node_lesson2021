@@ -1,0 +1,2 @@
+### rest echo test
+GET http://localhost:8090/echo?msg=nodejs&title=hello

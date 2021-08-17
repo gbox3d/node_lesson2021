@@ -6,8 +6,10 @@ console.log(process.env.NODE_ENV)
 
 const app = express()
 
+
 app.use(express.static('./www')) //정적 웹서비스 미들웨어 등록 
 app.use('/text', express.static('./text')) //텍스트 파일에 대한 미들웨어 등록 
+
 
 app.get('/api/v1/hello', (req, res) => {
     // res.send('hello express');
@@ -49,13 +51,12 @@ app.get('/help', (req, res) => {
         .send('<h1>Help</h1>')
 })
 
-
+//주의 > 맨 마지막에 와야함
 app.all('*', (req, res) => {
     res
         .status(404)
         .send(`page not found ${req.url}`)
 })
-
 
 app.listen(process.env.PORT, () => {
     console.log(`server start at : ${process.env.PORT}`)

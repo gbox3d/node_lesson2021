@@ -4,18 +4,44 @@ dotenv.config()
 
 const app = express()
 //미들웨어
+const rawBody = (req, res, next) => {
+    if (req.method == 'POST') {
+        req.body = ''
+        req.setEncoding('utf8')
+        req.on('data', (playload) => {
+            // console.log(playload)
+            req.body += playload
+        })
+
+        req.on('end', () => {
+            //바디 파싱 
+            // let _bodyToken = req.body.split('=')
+            // console.log(_bodyToken)
+            // req.body = {}
+            // req.body[_bodyToken[0]] = _bodyToken[1]
+            // console.log(req.body)
+            next()
+        })
+    }
+    else {
+        next()
+    }
+}
+
+app.use(express.static('../www'))
+// app.use('/api/v1',[])
 
 //method 
-app.post('/api/v1/hello',(req,res)=> {
-
-    console.log(req.body)
-    
-    res.json({r:'ok'})
+app.post('/api/v1/hello', rawBody,(req, res) => {
+    res.json({ r: 'ok',body : req.body })
+})
+app.post('/api/v1/addUser',express.urlencoded({extended:false}),(req, res) => {
+    res.json({ r: 'ok',name : req.body.name})
 })
 
-
-app.listen(process.env.PORT,()=> {
-    if(process.env.NODE_ENV == 'dev') {
+app.listen(process.env.PORT, () => {
+    if (process.env.NODE_ENV == 'dev') {
         console.log(`server start at : ${process.env.PORT}`)
     }
 })
+

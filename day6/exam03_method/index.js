@@ -36,7 +36,11 @@ app.post('/api/v1/hello', rawBody,(req, res) => {
     res.json({ r: 'ok',body : req.body })
 })
 app.post('/api/v1/addUser',express.urlencoded({extended:false}),(req, res) => {
-    res.json({ r: 'ok',name : req.body.name})
+    res.json({ r: 'ok',name : req.body.name,age:parseInt(req.body.age)});
+})
+
+app.post('/api/v2/addUser',express.json(),(req,res)=> {
+    res.json({ r: 'ok',name : req.body.name,age:parseInt(req.body.age)});
 })
 
 app.listen(process.env.PORT, () => {

@@ -1,8 +1,8 @@
 <template >
 
 <div>
-  <h1 class="title">Title</h1>
-  <p> 내용 </p>
+  <h1 class="title">{{title}}</h1>
+  <p> {{text}} </p>
 </div>
     
 </template>
@@ -12,9 +12,9 @@ export default {
     name : "TextBox",
     data() {
         return {
-
         }
     },
+    props : ["title","text"],
     methods:{
 
     },

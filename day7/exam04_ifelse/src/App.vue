@@ -1,5 +1,11 @@
 <template>
   <div>
+    <h1 :class="{red : isOn,bg_gray:isOn2}"> Blink </h1>
+    <button @click="toggle"> Toggle </button>
+    <button @click="toggle2"> Toggle2 </button>
+  </div>
+
+  <div>
     <h1 :class="{green: coinValue >= 50 ,yellow : coinValue < 50 && coinValue > 10,red : coinValue < 10}" >{{coinValue}}</h1>  
     <input v-model="coinValue" >
   </div>
@@ -19,7 +25,17 @@ export default {
   components: {},
   data() {
     return {
-      coinValue : 0
+      coinValue : 0,
+      isOn : false,
+      isOn2 : false
+    }
+  },
+  methods : {
+    toggle() {
+      this.isOn = !this.isOn
+    },
+    toggle2() {
+      this.isOn2 = !this.isOn2
     }
   }
 }
@@ -40,6 +56,9 @@ div {
 }
 h1 {
   text-align: center;
+}
+.bg_gray {
+  background-color: gray;
 }
 
 

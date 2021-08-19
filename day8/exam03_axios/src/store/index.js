@@ -1,52 +1,36 @@
 import { createStore } from 'vuex'
+import axios from 'axios'
 
 export default createStore({
-  state() {
-    return {
-      todos : []
-    }
+  state: {
+    todos: []
   },
   mutations: {
-    updateTodos(state) {
-      //axios
-
-      state.todos = [
-        {
-          "userId": 1,
-          "id": 1,
-          "title": "delectus aut autem",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 2,
-          "title": "quis ut nam facilis et officia qui",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 3,
-          "title": "fugiat veniam minus",
-          "completed": false
-        },
-        {
-          "userId": 1,
-          "id": 4,
-          "title": "et porro tempora",
-          "completed": true
-        },
-        {
-          "userId": 1,
-          "id": 5,
-          "title": "laboriosam mollitia et enim quasi adipisci quia provident illum",
-          "completed": false
-        }
-      ]
-
+    updateTodos(state,playload) {
+      console.log(playload)
+      state.todos = playload
     }
-    
   },
   actions: {
+    updateTodos(context) {
+      //axios
+      console.log(context);
+      // console.log(this)
+      (async () => {
+        try {
+          let url = 'https://jsonplaceholder.typicode.com/todos';
+          let { status, data } = await axios.get(url);
+          console.log(status);
+          // console.log(data);
+          context.commit('updateTodos',data)
+
+          // state.todos = data
+        }
+        catch (e) {
+          console.log(e)
+        }
+      })();
+    }
   },
   modules: {
   }

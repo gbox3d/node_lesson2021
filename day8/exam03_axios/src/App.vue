@@ -8,7 +8,6 @@
         <li v-for="(item ,index) in todoList" :key="index" >
           {{item.title}}
         </li>
-
       </ul>
     </div>
   </div>
@@ -25,9 +24,7 @@ export default {
   },
   methods : {
     getTodoList_store() {
-      this.$store.commit('updateTodos');
-      // console.log(this.$store.status.todos)
-
+      this.$store.dispatch('updateTodos');
     },
     getTodoList() {
       let url = 'https://jsonplaceholder.typicode.com/todos';

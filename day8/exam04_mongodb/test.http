@@ -1,2 +1,12 @@
-## test get hello
-GET http://localhost:8080/hello
+### test get hello
+GET http://localhost:8080/helloß
+
+### test post insert
+POST http://localhost:8080/insert
+Content-Type: application/json
+
+{"title":"test8","text":"item1"}
+
+### test get find
+GET http://localhost:8080/find/skip/3/limit/3
+

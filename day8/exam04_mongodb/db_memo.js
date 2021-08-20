@@ -7,7 +7,10 @@ export default (db_client) => {
     router.use('/',(req,res,next)=> {
         console.log(`allowed cors : ${req.originalUrl}`);
         // res.set('Access-Control-Allow-Origin','http://localhost:8080')
+        
         res.set('Access-Control-Allow-Origin','*'); //cors 전체 허용
+        res.set('Access-Control-Allow-Methods', '*');
+        res.set("Access-Control-Allow-Headers", "*");
         next();
     });
     router.post('/insert', async (req, res) => {

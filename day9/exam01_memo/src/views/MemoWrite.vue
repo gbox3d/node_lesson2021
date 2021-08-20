@@ -9,6 +9,8 @@
     <hr>
     <button @click="onWriteMemo" >write</button>
 
+    <h2 v-show="bWaitWindow" > Uploading... </h2>
+
 
   </div>
 </template>
@@ -20,6 +22,11 @@ export default {
       titleVal: "",
       textVal: "",
     };
+  },
+  computed: {
+      bWaitWindow() {
+        return this.$store.state.bNowWriting
+      } 
   },
   methods: {
       onWriteMemo() {

@@ -3,7 +3,8 @@ import axios from 'axios'
 
 export default createStore({
   state: {
-    memoList: []
+    memoList: [],
+    bNowWriting : false
   },
   mutations: {
     updateMemoList(state, playload) {
@@ -15,6 +16,8 @@ export default createStore({
 
       console.log(playload)
 
+      context.state.bNowWriting = true
+
       let { status, data } = await axios({
         method: 'POST',
         url: 'http://localhost:8000/api/v1/memo/insert',
@@ -23,6 +26,8 @@ export default createStore({
           'Content-Type': 'application/json'
         }
       });
+
+      context.state.bNowWriting = false;
 
       console.log(status);
       console.log(data);

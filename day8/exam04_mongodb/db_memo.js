@@ -4,6 +4,12 @@ import {ObjectId} from 'mongodb'
 const router = express.Router()
 
 export default (db_client) => {
+    router.use('/',(req,res,next)=> {
+        console.log(`allowed cors : ${req.originalUrl}`);
+        // res.set('Access-Control-Allow-Origin','http://localhost:8080')
+        res.set('Access-Control-Allow-Origin','*');
+        next();
+    });
     router.post('/insert', async (req, res) => {
 
         try {
@@ -31,7 +37,8 @@ export default (db_client) => {
                 .limit(parseInt(req.params.limit));
 
             let items = await cursor.toArray();
-            res.json({ r: 'ok', d: items });
+            res            
+            .json({ r: 'ok', d: items });
         }
         catch (e) {
             res.json({ r: 'err', err: e })

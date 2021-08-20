@@ -24,6 +24,11 @@ export default {
   methods: {
       onWriteMemo() {
 
+          this.$store.dispatch('writeMemo',{
+              title : this.titleVal,
+              text : this.textVal
+          })
+
           console.log(this.titleVal,this.textVal);
 
       }

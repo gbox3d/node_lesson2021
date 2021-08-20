@@ -6,6 +6,7 @@
             <li v-for="(item,index) in memoList" :key="index" >
                 <h1>{{item.title}}</h1>
                 <h3>{{item.text}}</h3>
+                <button @click="deleteMemo(item._id)"> del </button>
             </li>
 
         </ul>
@@ -22,12 +23,16 @@ export default {
 
     },
     methods : {
+        deleteMemo(_id) {
+            console.log(_id);
+            this.$store.dispatch('deleteMemo',_id)
+        },
         updateList() {
             this.$store.dispatch('updateMemoList')
         }
     },
     created() {
-        console.log('created')
+        // console.log('created')
         this.$store.dispatch('updateMemoList')
     }
 }

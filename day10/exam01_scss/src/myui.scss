@@ -12,11 +12,10 @@
         margin: 4px 2px;
         cursor: pointer;
     }
-    &.nav {
-        margin: 0px;
-        .activate {
-            background-color: grey;
-        }
+    &.nav {        
+        .active {
+            background-color: #326ad3;
+        }       
         ul {
             list-style-type: none;
             margin: 0;

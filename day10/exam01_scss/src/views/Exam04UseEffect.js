@@ -26,6 +26,14 @@ const Exam04 = ()=> {
         console.log('counter 1 or 2 upadte')
     },[count1,count2])
 
+    //진입 초기에 초기리해야할것들...
+    useEffect(()=> {
+        console.log('--------view created-----------')
+        return ()=> {
+            console.log('----------view destroy -----------')
+        }
+    },[])
+
     
 
     return (
